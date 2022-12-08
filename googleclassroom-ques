@@ -1,0 +1,92 @@
+  ques. 1-> find peak element:-
+     
+       int findPeakElement(vector<int>& nums) {
+            int i,f=0;
+            for(i=1;i<nums.size();i++)
+                if(nums[i]>nums[i-1] && nums[f]<nums[i])
+                    f=i;
+
+            return f;
+        }
+        
+        
+ ques. 2-> search in rotated sorted array
+  
+    Approach 1. by binary serarch(log(n))
+    
+         int search(vector<int>& nums, int target) {
+            int f=0,s,i;
+            for(i=1;i<nums.size();i++)
+                if(nums[i]<nums[i-1])
+                    {s=i;break;}
+
+
+            int l=0,r=i-1;
+            if(target>=nums[l]&&target<=nums[r])
+            while(l<=r){
+                int m=(l+r)/2;
+                if(target==nums[m])
+                    return m;
+                else if(target<nums[m])
+                    r=m-1;
+                else
+                    l=m+1;
+            }
+            else
+            { l=i;
+            r=nums.size()-1;
+            while(l<=r)
+                {
+                int m=(l+r)/2;
+                if(target==nums[m])
+                    return m;
+                else if(target<nums[m])
+                    r=m-1;
+                else
+                    l=m+1;
+            }}
+            return -1;
+        }
+        
+   Aproach 2. by linear search
+   
+        int search(vector<int>& nums, int target) {
+        int i;
+        for(i=0;i<nums.size();i++)
+            if(nums[i]==target)
+                return i;
+        
+        return -1;
+        }
+        
+ques. 3->  Find First and Last Occurance
+
+         vector<int> searchRange(vector<int>& nums, int target) {
+         int l=0,r=nums.size()-1,m;
+         vector<int>ans(2,-1);
+         while(l<=r){
+             m=(l+r)/2;
+             if(nums[m]<=target){
+                 l=m+1;
+                 if(nums[m]==target)
+                    {ans[1]=m;}
+             }
+             else
+                r=m-1;
+         }   
+         l=0,r=nums.size()-1;
+         while(l<=r){
+             int m=(l+r)/2;
+             if(nums[m]>=target){
+                 r=m-1;
+                 if(nums[m]==target)
+                    ans[0]=m;
+             }
+             else
+                l=m+1;
+         }
+
+         return ans;
+        }
+    
+  
