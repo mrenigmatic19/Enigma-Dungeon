@@ -1,0 +1,74 @@
+    using linear queue
+    
+    MyQueue() {
+        
+    }
+    int a[1000];
+    int f=0,r=0;
+    void push(int x) {
+        if(r==1000)
+        cout<<"overflow"<<endl;
+        else
+        {
+            a[r++]=x;
+        }
+    }
+   
+    int pop() {
+        if(f==r||r==0&&f==0)
+        return -1;
+        else{
+            int t=a[f];
+            f++;
+            return t;
+        }
+
+    }
+    
+    int peek() {
+        return a[f];
+    }
+    
+    bool empty() {
+        if(f==r||r==0&&f==0)
+        return true;
+        return false;
+    }
+};
+using circular queue
+    MyQueue() {
+        
+    }
+    int a[1000];
+    int f=0,r=0;
+    void push(int x) {
+        if(r==1000)
+        cout<<"overflow"<<endl;
+        else
+        {
+            a[r]=x;
+            r=(r+1)%1000;
+        }
+    }
+   
+    int pop() {
+        if(f==r||r==0&&f==0)
+        return -1;
+        else{
+            int t=a[f];
+            f=(f+1)%1000;
+            return t;
+        }
+
+    }
+    
+    int peek() {
+        return a[f];
+    }
+    
+    bool empty() {
+        if(f==r||r==0&&f==0)
+        return true;
+        return false;
+    }
+};
